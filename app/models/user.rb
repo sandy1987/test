@@ -6,6 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
   attr_accessor :login
 
+  has_one :profile
+
+  after_create :build_user_profile
+
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)
@@ -13,11 +17,8 @@ class User < ApplicationRecord
   end
 
   protected
-
-    def self.send_reset_password_instructions attributes = {}
-      recoverable = find_recoverable_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
-      recoverable.send_reset_password_instructions if recoverable.persisted?
-      recoverable
+    def build_user_profile
+      self.build_profile.save
     end
 
     def self.find_recoverable_or_initialize_with_errors required_attributes, attributes, error = :invalid
@@ -45,6 +46,12 @@ class User < ApplicationRecord
         end
       end
       record
+    end
+
+    def self.send_reset_password_instructions attributes = {}
+      recoverable = find_recoverable_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
+      recoverable.send_reset_password_instructions if recoverable.persisted?
+      recoverable
     end
 
     def self.find_record login
