@@ -1,0 +1,62 @@
+<%= form_for(work_schedule) do |f| %>
+  <% if work_schedule.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(work_schedule.errors.count, "error") %> prohibited this work_schedule from being saved:</h2>
+
+      <ul>
+      <% work_schedule.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.datetime_select :date %>
+  </div>
+
+  <div class="field">
+    <%= f.label :location %>
+    <%= f.text_field :location %>
+  </div>
+
+  <div class="field">
+    <%= f.label :role %>
+    <%= f.text_field :role %>
+  </div>
+
+  <div class="field">
+    <%= f.label :shift_type %>
+    <%= f.text_field :shift_type %>
+  </div>
+
+  <div class="field">
+    <%= f.label :time_slot_1 %>
+    <%= f.text_field :time_slot_1 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :time_slot_2 %>
+    <%= f.text_field :time_slot_2 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :total_hours %>
+    <%= f.text_field :total_hours %>
+  </div>
+
+  <div class="field">
+    <%= f.label :amount %>
+    <%= f.text_field :amount %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.number_field :user_id %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

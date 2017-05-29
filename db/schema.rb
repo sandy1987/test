@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170529125634) do
+ActiveRecord::Schema.define(version: 20170529130139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,20 @@ ActiveRecord::Schema.define(version: 20170529125634) do
     t.integer "user_id"
     t.integer "role_id"
     t.index ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id", using: :btree
+  end
+
+  create_table "work_schedules", force: :cascade do |t|
+    t.datetime "date"
+    t.string   "location"
+    t.string   "role"
+    t.string   "shift_type"
+    t.string   "time_slot_1"
+    t.string   "time_slot_2"
+    t.string   "total_hours"
+    t.float    "amount"
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
 end

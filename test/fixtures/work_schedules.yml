@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-05-29 18:31:39
+  location: MyString
+  role: MyString
+  shift_type: MyString
+  time_slot_1: MyString
+  time_slot_2: MyString
+  total_hours: MyString
+  amount: 1.5
+  user_id: 1
+
+two:
+  date: 2017-05-29 18:31:39
+  location: MyString
+  role: MyString
+  shift_type: MyString
+  time_slot_1: MyString
+  time_slot_2: MyString
+  total_hours: MyString
+  amount: 1.5
+  user_id: 1

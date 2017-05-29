@@ -8,6 +8,7 @@ class User < ApplicationRecord
   attr_accessor :login
 
   has_one :profile
+  has_many :work_schedules
 
   after_create :build_user_profile
 
@@ -20,6 +21,10 @@ class User < ApplicationRecord
   protected
     def build_user_profile
       self.build_profile.save
+    end
+
+    def self.find_record login
+      where(["username = :value OR email = :value", {value: login}]).first
     end
 
     def self.find_recoverable_or_initialize_with_errors required_attributes, attributes, error = :invalid
@@ -53,10 +58,6 @@ class User < ApplicationRecord
       recoverable = find_recoverable_or_initialize_with_errors(reset_password_keys, attributes, :not_found)
       recoverable.send_reset_password_instructions if recoverable.persisted?
       recoverable
-    end
-
-    def self.find_record login
-      where(["username = :value OR email = :value", {value: login}]).first
     end
 
 end
