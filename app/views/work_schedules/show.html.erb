@@ -42,7 +42,7 @@
 
 <p>
   <strong>User:</strong>
-  <%= @work_schedule.user_id %>
+  <%= @work_schedule.user.profile.name.try(:capitalize) %>
 </p>
 
 <%= link_to 'Edit', edit_work_schedule_path(@work_schedule) %> |

@@ -36,7 +36,7 @@ class WorkSchedulesController < ApplicationController
   end
 
   def next_schedule
-    current_user.work_schedules.first
+    @next_schedule = current_user.work_schedules.order('date ASC').first
   end
 
   def show
