@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     def after_sign_in_path_for(resource)
       profile = resource.profile
       if profile.is_completed?
-        profile_path(profile)
+        root_path
       else
         edit_profile_path(profile)
       end

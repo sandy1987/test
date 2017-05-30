@@ -1,6 +1,6 @@
 class WorkSchedulesController < ApplicationController
   before_action :set_work_schedule, only: [:show, :edit, :update, :destroy]
-  before_action :check_user_execess, except: [:show, :next_schedule]
+  before_action :check_user_execess, except: [:show, :next_schedule, :my_schedule]
 
   def create
     @work_schedule = WorkSchedule.new(work_schedule_params)
@@ -29,6 +29,10 @@ class WorkSchedulesController < ApplicationController
 
   def index
     @work_schedules = WorkSchedule.all
+  end
+
+  def my_schedule
+     
   end
 
   def new
