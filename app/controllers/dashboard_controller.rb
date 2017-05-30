@@ -11,7 +11,7 @@ class DashboardController < ApplicationController
   private
 
     def landing_page_for_loggedin_user
-      if current_user.has_role? :admin
+      if current_user.is_admin?
         work_schedules_path
       else
         next_schedule_path
