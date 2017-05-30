@@ -1,4 +1,4 @@
-class Api::V1::ProfilesController < ApplicationController
+class Api::V1::ProfilesController < Api::V1::ApiController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   def edit
@@ -9,7 +9,7 @@ class Api::V1::ProfilesController < ApplicationController
 
   def update
     if @profile.update(profile_params)
-      redirect_to @profile, notice: 'Profile was successfully updated.'
+      render :json=> @profile.as_json(msg: 'Profile was successfully updated.')
     else
       render :edit
     end

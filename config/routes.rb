@@ -16,16 +16,31 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :users
+      # Dashboard
       get 'dashboard/contact_info'
       get 'dashboard/home'
       get 'dashboard/terms_of_aggrement'
-      get 'passwords/create'
-      get 'registrations/create'
-      get 'sessions/create'
-      get 'sessions/destroy'
+      # Password
+      post 'passwords/create'
+      # Registration
+      post 'registrations/create'
+      # Session
+      post 'sessions/create'
+      delete 'sessions/destroy'
+      # Profile
       get 'profiles/edit'
       get 'profiles/show'
-      get 'profiles/update'
+      patch 'profiles/update'
+      # Work Schedule
+      post 'work_schedules/create'
+      delete 'work_schedules/destroy'
+      get 'work_schedules/edit'
+      get 'work_schedules/index'
+      get 'work_schedules/my_schedule'
+      get 'work_schedules/new'
+      get 'work_schedules/next_schedule'
+      get 'work_schedules/show'
+      patch 'work_schedules/update'
     end
   end
 

@@ -7,8 +7,7 @@ class Api::V1::SessionsController < Api::V1::ApiController
       render :json=> { success: false, message: "Error with your login or password"}, :status=>401
     elsif resource.valid_password?(params[:user][:password])
       sign_in("user", resource)
-      after_sign_in_page_data(resource)
-      # render :json=> { success: true, auth_token: resource.authentication_token, login: resource.login, email: resource.email }
+      render :json=> { success: true, auth_token: resource.authentication_token, email: resource.email, data: after_sign_in_data(resource) }
     else
       render :json=> { success: false, message: "Error with your login or password" }, status: 401
     end
@@ -17,24 +16,13 @@ class Api::V1::SessionsController < Api::V1::ApiController
   def destroy
   end
 
-  def after_sign_in_page_data(resource)
+  def after_sign_in_data(resource)
     profile = resource.profile
     if profile.is_completed?
-      landing_page_for_loggedin_user
+      landing_page_detail_for_loggedin_user
     else
-      edit_profile_path(profile)
+      { incomplete_profile: true, profile: profile }
     end
   end
-
-  private
-
-    def landing_page_for_loggedin_user
-      if current_user.is_admin?
-        work_schedules_path
-      else
-        next_schedule_path
-      end
-    end
-
 
 end
