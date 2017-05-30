@@ -1,6 +1,5 @@
 class Api::V1::RegistrationsController < Api::V1::ApiController
   skip_before_action :authenticate, :only => [:create ]
-  protect_from_forgery with: :null_session
 
   def create
     user = User.new(params[:user].permit!)
@@ -12,4 +11,5 @@ class Api::V1::RegistrationsController < Api::V1::ApiController
       render :json=> user.errors, :status=>422
     end
   end
+
 end

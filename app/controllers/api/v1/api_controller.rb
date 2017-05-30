@@ -1,4 +1,5 @@
 class Api::V1::ApiController < ApplicationController
+  protect_from_forgery with: :null_session
   respond_to :json
   before_action :authenticate
 
@@ -8,6 +9,7 @@ class Api::V1::ApiController < ApplicationController
   end
 
   protected
+
     def authenticate
       authenticate_token || render_unauthorized
     end
@@ -22,4 +24,5 @@ class Api::V1::ApiController < ApplicationController
       self.headers['WWW-Authenticate'] = 'Token realm="Application"'
       render json: 'Bad credentials', status: 401
     end
+
 end
