@@ -23,6 +23,9 @@ Rails.application.routes.draw do
       get 'registrations/create'
       get 'sessions/create'
       get 'sessions/destroy'
+      get 'profiles/edit'
+      get 'profiles/show'
+      get 'profiles/update'
     end
   end
 
