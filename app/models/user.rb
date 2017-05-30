@@ -12,6 +12,14 @@ class User < ApplicationRecord
 
   after_create :build_user_profile
 
+  def is_admin?
+    has_role? :admin
+  end
+
+  def name
+    profile.name.capitalize    
+  end
+
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup
     login = conditions.delete(:login)

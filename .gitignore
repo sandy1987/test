@@ -11,6 +11,7 @@
 /log/*
 /tmp/*
 /vendor/*
+/public/system/*
 
 # Ignore Byebug command history file.
 .byebug_history

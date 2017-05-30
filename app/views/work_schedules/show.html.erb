@@ -1,7 +1,7 @@
 <%= render partial: 'schedule', locals: { schedule: @work_schedule } %>
 <p>
   <strong>User:</strong>
-  <%= @work_schedule.user.profile.name.try(:capitalize) %>
+  <%= @work_schedule.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_work_schedule_path(@work_schedule) %> |
