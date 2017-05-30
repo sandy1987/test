@@ -1,29 +1,5 @@
 Rails.application.routes.draw do
 
-  namespace :api do
-    namespace :v1 do
-      get 'passwords/create'
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      get 'registrations/create'
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      get 'sessions/create'
-    end
-  end
-
-  namespace :api do
-    namespace :v1 do
-      get 'sessions/destroy'
-    end
-  end
-
   devise_for :users
 
   root to: 'dashboard#home'
@@ -40,6 +16,14 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       devise_for :users
+      get 'dashboard/contact_info'
+      get 'dashboard/home'
+      get 'dashboard/terms_of_aggrement'
+      get 'passwords/create'
+      get 'registrations/create'
+      get 'sessions/create'
+      get 'sessions/destroy'
     end
   end
+
 end
