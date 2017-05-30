@@ -5,11 +5,11 @@
 
   <div class="field">
     <%= f.label :login %><br />
-    <%= f.text_field :login, autofocus: true %>
-  </div>
+    <%= f.text_field :login, autofocus: true, class: 'form-control' %>
+  </div><br>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Send me reset password instructions", class: 'btn btn-primary form-control' %>
   </div>
 <% end %>
 
