@@ -1,7 +1,8 @@
 class CreateWorkSchedules < ActiveRecord::Migration[5.0]
   def change
     create_table :work_schedules do |t|
-      t.datetime :date
+      t.datetime :start_date
+      t.datetime :end_date
       t.string :location
       t.string :role
       t.string :shift_type

@@ -1,45 +1,4 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Date:</strong>
-  <%= @work_schedule.date %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @work_schedule.location %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @work_schedule.role %>
-</p>
-
-<p>
-  <strong>Shift type:</strong>
-  <%= @work_schedule.shift_type %>
-</p>
-
-<p>
-  <strong>Time slot 1:</strong>
-  <%= @work_schedule.time_slot_1 %>
-</p>
-
-<p>
-  <strong>Time slot 2:</strong>
-  <%= @work_schedule.time_slot_2 %>
-</p>
-
-<p>
-  <strong>Total hours:</strong>
-  <%= @work_schedule.total_hours %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @work_schedule.amount %>
-</p>
-
+<%= render partial: 'schedule', locals: { schedule: @work_schedule } %>
 <p>
   <strong>User:</strong>
   <%= @work_schedule.user.profile.name.try(:capitalize) %>

@@ -32,7 +32,8 @@ class WorkSchedulesController < ApplicationController
   end
 
   def my_schedule
-     
+    @work_schedules = WorkSchedule.all
+    @my_schedule = current_user.work_schedules.where(id:params[:schedule_id]).first if params[:schedule_id].present?
   end
 
   def new
@@ -40,7 +41,7 @@ class WorkSchedulesController < ApplicationController
   end
 
   def next_schedule
-    @next_schedule = current_user.work_schedules.order('date ASC').first
+    @next_schedule = current_user.work_schedules.order('start_date ASC').first
   end
 
   def show
@@ -64,11 +65,15 @@ class WorkSchedulesController < ApplicationController
       redirect_to root_path, notice: 'You are not authorised to visit this page!' unless current_user.has_role? :admin
     end
 
+    def same_format date
+      date.to_date.strftime("%m/%d/%Y")      
+    end
+
     def set_work_schedule
       @work_schedule = WorkSchedule.find(params[:id])
     end
 
     def work_schedule_params
-      params.require(:work_schedule).permit(:date, :location, :role, :shift_type, :time_slot_1, :time_slot_2, :total_hours, :amount, :user_id)
+      params.require(:work_schedule).permit(:start_date, :location, :role, :shift_type, :time_slot_1, :time_slot_2, :total_hours, :amount, :user_id)
     end
 end

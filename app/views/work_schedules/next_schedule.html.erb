@@ -1,40 +1,6 @@
 <h2>Next Schedule<h2>
-<p>
-  <strong>Date:</strong>
-  <%= @next_schedule.date %>
-</p>
-
-<p>
-  <strong>Location:</strong>
-  <%= @next_schedule.location %>
-</p>
-
-<p>
-  <strong>Role:</strong>
-  <%= @next_schedule.role %>
-</p>
-
-<p>
-  <strong>Shift type:</strong>
-  <%= @next_schedule.shift_type %>
-</p>
-
-<p>
-  <strong>Time slot 1:</strong>
-  <%= @next_schedule.time_slot_1 %>
-</p>
-
-<p>
-  <strong>Time slot 2:</strong>
-  <%= @next_schedule.time_slot_2 %>
-</p>
-
-<p>
-  <strong>Total hours:</strong>
-  <%= @next_schedule.total_hours %>
-</p>
-
-<p>
-  <strong>Amount:</strong>
-  <%= @next_schedule.amount %>
-</p>
+<% if @next_schedule.present? %>
+  <%= render partial: 'schedule', locals: { schedule: @next_schedule } %>
+<% else %>
+  <h3>No schedule present for you</h3>
+<% end %>

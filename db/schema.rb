@@ -74,7 +74,8 @@ ActiveRecord::Schema.define(version: 20170529130139) do
   end
 
   create_table "work_schedules", force: :cascade do |t|
-    t.datetime "date"
+    t.datetime "start_date"
+    t.datetime "end_date"
     t.string   "location"
     t.string   "role"
     t.string   "shift_type"
