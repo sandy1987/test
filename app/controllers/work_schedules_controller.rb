@@ -32,8 +32,13 @@ class WorkSchedulesController < ApplicationController
   end
 
   def my_schedule
-    @work_schedules = WorkSchedule.all
-    @my_schedule = current_user.work_schedules.where(id:params[:schedule_id]).first if params[:schedule_id].present?
+    if current_user.is_admin?
+      @work_schedules = WorkSchedule.all
+      @my_schedule = WorkSchedule.where(id:params[:schedule_id]).first if params[:schedule_id].present?
+    else
+      @work_schedules = current_user.work_schedules.all
+      @my_schedule = current_user.work_schedules.where(id:params[:schedule_id]).first if params[:schedule_id].present?
+    end
   end
 
   def new
