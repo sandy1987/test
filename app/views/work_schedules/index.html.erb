@@ -1,8 +1,6 @@
-<p id="notice"><%= notice %></p>
+<h2 class="text-center">Work Schedules</h2>
 
-<h1>Work Schedules</h1>
-
-<table>
+<table class="schedules">
   <thead>
     <tr>
       <th>Date</th>
@@ -21,7 +19,7 @@
   <tbody>
     <% @work_schedules.each do |work_schedule| %>
       <tr>
-        <td><%= work_schedule.start_date %></td>
+        <td><%= work_schedule.start_date.to_date %></td>
         <td><%= work_schedule.location %></td>
         <td><%= work_schedule.role %></td>
         <td><%= work_schedule.shift_type %></td>
@@ -29,15 +27,15 @@
         <td><%= work_schedule.time_slot_2 %></td>
         <td><%= work_schedule.total_hours %></td>
         <td><%= work_schedule.amount %></td>
-        <td><%= work_schedule.user_id %></td>
-        <td><%= link_to 'Show', work_schedule %></td>
-        <td><%= link_to 'Edit', edit_work_schedule_path(work_schedule) %></td>
-        <td><%= link_to 'Destroy', work_schedule, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= work_schedule.user.name %></td>
+        <td>
+          <%= link_to 'Edit', edit_work_schedule_path(work_schedule) %> | 
+          <%= link_to 'Destroy', work_schedule, method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
-
 <br>
 
 <%= link_to 'New Work Schedule', new_work_schedule_path %>
