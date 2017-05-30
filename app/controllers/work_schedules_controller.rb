@@ -39,7 +39,7 @@ class WorkSchedulesController < ApplicationController
   end
 
   def next_schedule
-    @next_schedule = current_user.work_schedules.order('start_date ASC').first
+    @next_schedule = current_user.work_schedules.where("start_date >= ?", Time.now.to_date).first
   end
 
   def show
