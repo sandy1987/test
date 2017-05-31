@@ -32,15 +32,8 @@ Rails.application.routes.draw do
       get 'profiles/show'
       patch 'profiles/update'
       # Work Schedule
-      post 'work_schedules/create'
-      delete 'work_schedules/destroy'
-      get 'work_schedules/edit'
-      get 'work_schedules/index'
-      get 'work_schedules/my_schedule'
-      get 'work_schedules/new'
+      match 'work_schedules/my_schedule', via: [:get, :post]
       get 'work_schedules/next_schedule'
-      get 'work_schedules/show'
-      patch 'work_schedules/update'
     end
   end
 

@@ -7,11 +7,6 @@ class Api::V1::ApiController < ApplicationController
     User.find_by(authentication_token: request.headers.env['HTTP_AUTH_TOKEN'])
   end
 
-  def index
-    episodes = Episode.all
-    render json: episodes, status: 200
-  end
-
   def landing_page_detail_for_loggedin_user
     if current_user.is_admin?
       { incomplete_profile: false, role: 'admin', all_schedules: WorkSchedule.all }

@@ -7,13 +7,15 @@ class Api::V1::SessionsController < Api::V1::ApiController
       render :json=> { success: false, message: "Error with your login or password"}, :status=>401
     elsif resource.valid_password?(params[:user][:password])
       sign_in("user", resource)
-      render :json=> { success: true, auth_token: resource.authentication_token, email: resource.email, data: after_sign_in_data(resource) }
+      render :json=> { success: true, auth_token: resource.authentication_token, email: resource.email }
     else
       render :json=> { success: false, message: "Error with your login or password" }, status: 401
     end
   end
 
   def destroy
+    current_user.update_column(:authentication_token, nil)
+    render :status => 200, json: { success: true, info: "Logged out", data: {} }
   end
 
   def after_sign_in_data(resource)
