@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       # Profile
       get 'profiles/edit'
       get 'profiles/show'
-      patch 'profiles/update'
+      put 'profiles/update'
       # Work Schedule
       match 'work_schedules/my_schedule', via: [:get, :post]
       get 'work_schedules/next_schedule'

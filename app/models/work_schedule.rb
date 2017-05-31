@@ -5,4 +5,5 @@ class WorkSchedule < ApplicationRecord
   def start_time
     self.start_date.try(:to_date)
   end
+
 end

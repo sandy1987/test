@@ -19,7 +19,7 @@
   <tbody>
     <% @work_schedules.each do |work_schedule| %>
       <tr>
-        <td><%= work_schedule.start_date.to_date %></td>
+        <td><%= work_schedule.start_date.try(:to_date) %></td>
         <td><%= work_schedule.location %></td>
         <td><%= work_schedule.role %></td>
         <td><%= work_schedule.shift_type %></td>
@@ -27,7 +27,7 @@
         <td><%= work_schedule.time_slot_2 %></td>
         <td><%= work_schedule.total_hours %></td>
         <td><%= work_schedule.amount %> $</td>
-        <td><%= work_schedule.user.name %></td>
+        <td><%= work_schedule.user.try(:name) %></td>
         <td>
           <%= link_to 'Edit', edit_work_schedule_path(work_schedule) %> | 
           <%= link_to 'Destroy', work_schedule, method: :delete, data: { confirm: 'Are you sure?' } %>

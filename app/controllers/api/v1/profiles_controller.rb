@@ -1,10 +1,12 @@
 class Api::V1::ProfilesController < Api::V1::ApiController
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :set_profile, only: [:show, :edit, :update]
 
   def edit
+    render :json=> @profile.as_json
   end
 
   def show
+    render :json=> @profile.as_json
   end
 
   def update
