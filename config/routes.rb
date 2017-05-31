@@ -34,6 +34,11 @@ Rails.application.routes.draw do
       # Work Schedule
       match 'work_schedules/my_schedule', via: [:get, :post]
       get 'work_schedules/next_schedule'
+      # Funds
+      get 'funds/available_fund'
+      post 'funds/withdraw'
+      post 'funds/confirm_withdraw'
+      get 'funds/netpay'
     end
   end
 

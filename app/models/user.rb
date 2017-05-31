@@ -9,6 +9,7 @@ class User < ApplicationRecord
 
   has_one :profile
   has_many :work_schedules
+  has_many :transactions
 
   after_create :build_user_profile
 
