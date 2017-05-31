@@ -1,0 +1,27 @@
+%p
+  %strong Name:
+  = @profile.name
+%p
+  %strong Company:
+  = @profile.company
+%p
+  %strong Position:
+  = @profile.position
+%p
+  %strong Phone:
+  = @profile.phone
+%p
+  %strong Home address:
+  = @profile.home_address
+%p
+  %strong Security question:
+  = @profile.security_question
+%p
+  %strong Security answer:
+  = @profile.security_answer
+%p
+  %strong Image:
+  = image_tag @profile.image(:thumb)
+= link_to 'Edit', edit_profile_path(@profile)
+|
+= link_to 'Back', root_path

@@ -1,6 +1,0 @@
-<h2 class="text-center">My Next Shift</h2>
-<% if @next_schedule.present? %>
-  <%= render partial: 'schedule', locals: { schedule: @next_schedule } %>
-<% else %>
-  <h3>No schedule present for you</h3>
-<% end %>

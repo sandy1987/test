@@ -17,7 +17,7 @@ class User < ApplicationRecord
   end
 
   def name
-    profile.name.capitalize    
+    profile.try(:name).try(:capitalize)
   end
 
   def self.find_for_database_authentication warden_conditions

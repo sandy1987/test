@@ -1,0 +1,41 @@
+.col-md-3
+.profile-form.col-md-6
+  = form_for(profile) do |f|
+    - if profile.errors.any?
+      #error_explanation
+        %h2
+          = pluralize(profile.errors.count, "error")
+          prohibited this profile from being saved:
+        %ul
+          - profile.errors.full_messages.each do |message|
+            %li= message
+    .field
+      = f.label :name
+      = f.text_field :name, class: 'form-control'
+    .field
+      = f.label :company
+      = f.text_field :company, class: 'form-control'
+    .field
+      = f.label :position
+      = f.text_field :position, class: 'form-control'
+    .field
+      = f.label :phone
+      = f.text_field :phone, class: 'form-control'
+    .field
+      = f.label :home_address
+      = f.text_area :home_address, class: 'form-control'
+    .field
+      = f.label :security_question
+      = f.select :security_question, options_for_select(Profile::SECURITY_QUESTIONS, f.object.security_question), {}, class: 'form-control'
+    .field
+      = f.label :security_answer
+      = f.text_field :security_answer, class: 'form-control'
+    .field
+      = f.label :image
+      = f.file_field :image
+    %br/
+    .actions
+      = f.submit class: 'btn btn-primary form-control'
+  = link_to 'Show', profile
+  |
+  \#{link_to 'Back', root_path}

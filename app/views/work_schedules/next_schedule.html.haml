@@ -1,0 +1,5 @@
+%h2.text-center My Next Shift
+- if @next_schedule.present?
+  = render partial: 'schedule', locals: { schedule: @next_schedule }
+- else
+  %h3 No schedule present for you

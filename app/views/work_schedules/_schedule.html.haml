@@ -1,0 +1,53 @@
+.col-md-4
+.schedule.col-md-4
+  .row
+    .col-md-4
+      Date
+    .col-md-8
+      = schedule.start_date.try(:to_date)
+  .row
+    .col-md-4
+      Location
+    .col-md-8
+      = schedule.location
+  .row
+    .col-md-4
+      Role
+    .col-md-8
+      = schedule.role
+  .row
+    .col-md-4
+      Shift type
+    .col-md-8
+      = schedule.shift_type
+  .row
+    .col-md-4
+      Time slot 1
+    .col-md-8
+      = schedule.time_slot_1
+  .row
+    .col-md-4
+      Time slot 2
+    .col-md-8
+      = schedule.time_slot_2
+  .row
+    .col-md-4
+      Total hours
+    .col-md-8
+      = schedule.total_hours
+  .row
+    .col-md-4
+      Amount
+    .col-md-8
+      = schedule.amount
+      $
+  - if current_user.is_admin?
+    .row
+      .col-md-4
+        User
+      .col-md-8
+        = schedule.user.name
+      .col-md-4
+        = link_to 'Edit', edit_work_schedule_path(schedule)
+        |
+        \#{link_to 'Back', work_schedules_path}
