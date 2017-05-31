@@ -2,16 +2,16 @@ class Api::V1::ProfilesController < Api::V1::ApiController
   before_action :set_profile, only: [:show, :edit, :update]
 
   def edit
-    render :json=> @profile.as_json
+    render json: @profile.as_json
   end
 
   def show
-    render :json=> @profile.as_json
+    render json: @profile.as_json
   end
 
   def update
     if @profile.update(profile_params)
-      render :json=> @profile.as_json(msg: 'Profile was successfully updated.')
+      render json: @profile.as_json(msg: 'Profile was successfully updated.')
     else
       render :edit
     end

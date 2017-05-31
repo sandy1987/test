@@ -7,7 +7,7 @@ class Api::V1::WorkSchedulesController < Api::V1::ApiController
                     else
                       current_user.work_schedules
                     end
-    render :json=> { my_schedules: my_schedules }
+    render json: { my_schedules: my_schedules }
   end
 
   def next_schedule
