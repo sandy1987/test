@@ -11,7 +11,7 @@ class Api::V1::WorkSchedulesController < Api::V1::ApiController
   end
 
   def next_schedule
-    render json: current_user.work_schedules.where("start_date >= ?", Time.now.to_date).first
+    render json: { next_schedule: current_user.work_schedules.where("start_date >= ?", Time.now.to_date).first, available_fund: fund_to_be_withdraw }
   end
 
 end

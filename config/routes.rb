@@ -31,7 +31,7 @@ Rails.application.routes.draw do
       get 'funds/available_fund'
       post 'funds/withdraw'
       post 'funds/confirm_withdraw'
-      get 'funds/netpay'
+      post 'funds/netpay'
     end
   end
 

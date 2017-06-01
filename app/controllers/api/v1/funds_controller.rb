@@ -9,6 +9,7 @@ class Api::V1::FundsController < Api::V1::ApiController
   end
 
   def netpay
+    render json: { detail: create_transaction_for_user(params[:amount].to_i).as_json }
   end
 
   def withdraw
@@ -16,23 +17,49 @@ class Api::V1::FundsController < Api::V1::ApiController
   end
 
   private
+    def create_transaction_for_user amount
+      current_user.transactions.create(fund_after_tax_deduction(amount))
+    end
+
     def date_at_next_no_of_weeks weeks
       Time.now.to_date + (7*weeks).days
     end
 
-    def fund_to_be_withdraw
-      total_fund = current_user.work_schedules.pluck(:amount).sum
-      withdrawl_fund = Transaction.all.pluck(:amount).sum
-      return (total_fund - withdrawl_fund)
+    def date_for_fund_type key
+      case key
+        when 1 then [date_at_next_no_of_weeks(0)]
+        when 2 then [date_at_next_no_of_weeks(0),date_at_next_no_of_weeks(1),date_at_next_no_of_weeks(2)]
+        when 3 then [date_at_next_no_of_weeks(0),date_at_next_no_of_weeks(1)]
+      end
+    end
+
+    def get_data_for_option amount, key
+      perc = percent(key)
+      inter = intereset(amount, perc)
+      { title: title_for_fund_type(key), payment_date: date_for_fund_type(key), amount: amount, percent: perc, interest: inter, pay_split: "$#{amount} + #{perc}%($#{inter})", total: "#{amount+inter}" }
     end
 
     def payment_options amount
       today_date = Time.now.to_date
       options = {}
-      options[1] = { title: 'Pay Back on Current Pay Period', payment_date: [date_at_next_no_of_weeks(0)],pay_split: "$#{amount} + 5%($#{amount*5/100})", total: "#{amount+(amount*5/100)}" }
-      options[2] = { title: 'Split Payment between 2 pay periods', payment_date: [date_at_next_no_of_weeks(0),date_at_next_no_of_weeks(1),date_at_next_no_of_weeks(2)], pay_split: "$#{amount} + 7%($#{amount*7/100})", total: "#{amount+(amount*7/100)}" }
-      options[3] = { title: 'Pay Back on Next Pay Period', payment_date: [date_at_next_no_of_weeks(0),date_at_next_no_of_weeks(1)],pay_split: "$#{amount} + 10%($#{amount*10/100})", total: "#{amount+(amount*10/100)}" }
+      [1,2,3].map {|key| options[key] = get_data_for_option(amount, key) }
       return options
+    end
+
+    def percent key
+      case key
+        when 1 then 5
+        when 2 then 7
+        when 3 then 10
+      end 
+    end
+
+    def title_for_fund_type key
+      case key
+        when 1 then 'Pay Back on Current Pay Period'
+        when 2 then 'Split Payment between 2 pay periods'
+        when 3 then 'Pay Back on Next Pay Period'
+      end      
     end
 
     def transfer_detail amount, payback, payback_date
