@@ -20,13 +20,6 @@ Rails.application.routes.draw do
       get 'dashboard/contact_info'
       get 'dashboard/home'
       get 'dashboard/terms_of_aggrement'
-      # Password
-      post 'passwords/create'
-      # Registration
-      post 'registrations/create'
-      # Session
-      post 'sessions/create'
-      delete 'sessions/destroy'
       # Profile
       get 'profiles/edit'
       get 'profiles/show'
